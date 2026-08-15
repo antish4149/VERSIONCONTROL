@@ -14,16 +14,18 @@ const argv = yargs(hideBin(process.argv))
             describe: "File to add",
             type: "string"
         })
-    }, addRepo)
+    }, (args) => {
+        addRepo(args);
+    })
     .command("commit <message>", "Commit changes to the repository", (yargs) => {
         yargs.positional("message", {
             describe: "Commit message",
             type: "string"
         })
-    }, commitRepo)
-    .command("pull", "Pull changes from the repository", () => {
-
-    }, pullRepo)
+    }, (args) => {
+        commitRepo(args);
+    })
+    .command("pull", "Pull changes from the repository", {}, pullRepo)
     .command("push", "Push changes to the repository", {}, pushRepo)
     .command("revert <commitID", "Revert changes in the repository", (yargs) => {
         yargs.positional("commitID", {
