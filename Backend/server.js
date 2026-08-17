@@ -27,7 +27,7 @@ const argv = yargs(hideBin(process.argv))
     })
     .command("pull", "Pull changes from the repository", {}, pullRepo)
     .command("push", "Push changes to the repository", {}, pushRepo)
-    .command("revert <commitID", "Revert changes in the repository", (yargs) => {
+    .command("revert <commitID>", "Revert changes in the repository", (yargs) => {
         yargs.positional("commitID", {
             describe: "Commit message",
             type: "string"
