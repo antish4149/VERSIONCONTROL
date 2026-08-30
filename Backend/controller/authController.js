@@ -34,7 +34,7 @@ const registerUser = async (req, res) => {
 
         const savedUser = await newUser.save();
         const token = jwt.sign({ id: savedUser._id }, JWT_SECRET, { expiresIn: "1h" });
-        res.status(201).json(({ token }));
+        res.status(201).json(({ token, userId: savedUser._id }));
 
     } catch (error) {
         console.log("Error in user registration", error.message);
@@ -79,9 +79,16 @@ const loginUser = async (req, res) => {
     }
 }
 
-const logoutUser = (req, res) => {
-    res.send("user logoit");
-}
+const logoutUser = async (req, res) => {
+    try {
+        return res.status(200).json({ message: "Logged out successfully" });
+    } catch (error) {
+        console.error("Error in logout controller:", error.message);
+        return res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+
 
 const authController = { registerUser, loginUser, logoutUser }
 export default authController;
