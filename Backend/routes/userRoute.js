@@ -10,7 +10,7 @@ userRouter.post("/logout", authController.logoutUser);
 
 userRouter.get("/users", userController.getALLUsers);
 userRouter.get("/users/:id", userController.getUserById);
-userRouter.put("/users:id", userController.updateUser);
-userRouter.delete("/users:id", userController.deleteUser);
+userRouter.put("/users/:id", userController.updateUser);
+userRouter.delete("/users/:id", userController.deleteUser);
 
 export default userRouter;
